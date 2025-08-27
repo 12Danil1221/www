@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <?php require_once "blocks/header.php" ?>
+    <?php require_once "include/header.php" ?>
 
     <main class="feedback">
         <div class="container">
@@ -18,7 +18,7 @@
         </div>
     </main>
 
-    <?php require_once "blocks/footer.php" ?>
+    <?php require_once "include/footer.php" ?>
 </body>
 
 </html>

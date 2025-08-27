@@ -8,13 +8,12 @@
         text-align: center;
     }
     </style>
-    <?php require_once "./blocks/header.php" ?>
-
+    <?php require_once "./include/header.php" ?>
 
 <body>
     <div class="container2">
         <form class="form1" action="./func/add-game.php" method="post" enctype="multipart/form-data">
-            <input type="text" name="image" /><br><br>
+            <input type="file" name="image" /><br><br>
             <label for="content">Описание: </label><br>
             <input type="text" name="content" /><br>
             <label for="followers">Количество подписчиков игры: </label><br>
@@ -26,5 +25,5 @@
 </body>
 
 <?php 
-require_once "./blocks/footer.php"
+require_once "./include/footer.php"
 ?>

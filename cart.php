@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <?php require_once "blocks/header.php" ?>
+    <?php require_once "include/header.php" ?>
 
 
     <div class="feedback">
@@ -65,7 +65,7 @@
     </div>
 
 
-    <?php require_once "blocks/footer.php" ?>
+    <?php require_once "include/footer.php" ?>
 </body>
 
 </html>

@@ -10,7 +10,7 @@
 
 <body>
     <div class="wrapper">
-        <?php require_once "blocks/header.php" ?>
+        <?php require_once "include/header.php" ?>
 
         <div class="container trending">
             <h3>Currently Trending Games</h3>
@@ -22,10 +22,7 @@
                 require_once "./func/db.php";
                 
                 // Запрос к базе данных
-                $sql = 'SELECT * FROM trending ORDER BY id DESC';
-                $query = $pdo->prepare($sql);
-                $query->execute();
-                $games = $query->fetchAll(PDO::FETCH_OBJ);
+                $games = setSelectQuery('SELECT * FROM trending ORDER BY id DESC', null);
                 
                 // Проверка наличия данных в бд
                 if($games){
@@ -35,12 +32,21 @@
                     $content = htmlspecialchars($el->content, ENT_QUOTES, 'UTF-8');
                         echo '
                         <div class="block">
-                            <img class="game-image" src="img/'.$image.'" alt="">
+                            <img class="game-image" src="'.$image.'" alt="">
                             <span><img src="./img/fire.svg" alt=""> '.$followers.' Followers</span>
                             <span>'.$content.'</span>
 
                             <a href="./show.php/'.$el->id.'">Подробнее</a>
-                            <form method="post" action="./func/add-cart.php">
+                            
+                            <form action="./func/redact.php" method="POST">
+                            <input type="hidden" name="id" value="'.$el->id.'">
+                            <input type="hidden" name="followers" value="'.$el->followers.'">
+                            <input type="hidden" name="content" value="'.$el->content.'">
+                            
+                            <button class="redact" type="submit">Редактировать</button>
+                            </form>
+
+                            <form action="./func/add-cart.php" method="POST">
                             <input type="hidden" class="one-line" name="image" value="'.$el->image.'">
                             <input type="hidden" class="one-line" name="followers" value="'.$el->followers.'">
                             <input type="hidden" class="one-line" name="content" value="'.$el->content.'">
@@ -59,13 +65,6 @@
 
                         echo '
                             </form>
-                            <form action="./func/redact.php" method="POST">
-                            <input type="hidden" name="id" value="'.$el->id.'">
-                            <input type="hidden" name="followers" value="'.$el->followers.'">
-                            <input type="hidden" name="content" value="'.$el->content.'">
-                            
-                            <button class="redact" type="submit">Редактировать</button>
-                            </form>
                         </div>';
                     }
                 }else{
@@ -75,7 +74,7 @@
             </div>
         </div>
 
-        <?php require_once "blocks/footer.php" ?>
+        <?php require_once "include/footer.php" ?>
 
         <script>
         function checkEmail() {
