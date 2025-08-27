@@ -10,7 +10,7 @@
 
 <body>
     <div class="wrapper">
-        <?php require_once "blocks/header.php" ?>
+        <?php require_once "include/header.php" ?>
 
         <div class="hero container">
             <div class="hero--info">
@@ -34,12 +34,8 @@
                 require_once "./func/db.php";
 
                 //SQL
-                $sql = 'SELECT * FROM trending ORDER BY id DESC LIMIT 4';
-                $query = $pdo->prepare($sql);
-                $query->execute();
-                $games = $query->fetchAll(PDO::FETCH_OBJ);
-
-                // Проверка наличия игр
+                setSelectQuery('SELECT * FROM trending ORDER BY id DESC LIMIT 4', null);
+                // Проверка наличия товара
                 if ($games) {
                     foreach($games as $el){
                         $image = htmlspecialchars($el->image, ENT_QUOTES, 'UTF-8');
@@ -147,7 +143,7 @@
         </div>
     </section>
 
-    <?php require_once "blocks/footer.php" ?>
+    <?php require_once "include/footer.php" ?>
 
     <script>
     function checkEmail() {
