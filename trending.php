@@ -20,9 +20,9 @@
                 <?php
                 // Подключение к базе данных
                 require_once "./func/db.php";
-                
+                $query = new db();
                 // Запрос к базе данных
-                $games = setSelectQuery('SELECT * FROM trending ORDER BY id DESC', null);
+                $games = $query->setSelectQuery('SELECT * FROM trending ORDER BY id DESC', null);
                 
                 // Проверка наличия данных в бд
                 if($games){
@@ -32,7 +32,7 @@
                     $content = htmlspecialchars($el->content, ENT_QUOTES, 'UTF-8');
                         echo '
                         <div class="block">
-                            <img class="game-image" src="'.$image.'" alt="">
+                            <img class="game-image" src="'.$image.'" alt="" width="250" height="250">
                             <span><img src="./img/fire.svg" alt=""> '.$followers.' Followers</span>
                             <span>'.$content.'</span>
 

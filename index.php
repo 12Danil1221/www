@@ -32,9 +32,11 @@
                 <?php
                 //DB
                 require_once "./func/db.php";
-
+                $query = new db();
                 //SQL
-                setSelectQuery('SELECT * FROM trending ORDER BY id DESC LIMIT 4', null);
+                
+                $games = $query->setSelectQuery('SELECT * FROM trending ORDER BY id DESC LIMIT 4', null);
+                
                 // Проверка наличия товара
                 if ($games) {
                     foreach($games as $el){
@@ -43,7 +45,7 @@
                         $content = htmlspecialchars($el->content, ENT_QUOTES, 'UTF-8');
                         echo '
                         <div class="block">
-                            <img src="img/'.$el->image.'" alt="">
+                            <img src="'.$el->image.'" alt="Image" width="250" height="250">
                             <span><img src="./img/fire.svg" alt=""> '.$el->followers.' Followers</span>
                             <span>'.$el->content.'</span>
                         </div>';
