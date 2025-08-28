@@ -13,15 +13,10 @@
 <?php 
 //DB
 require './func/db.php';
+$query = new db();
+$id = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_NUMBER_INT);
 
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0; // Приводим к целому числу для безопасности
-
-$stmt = 'SELECT * FROM trending WHERE id = :id';
-$stmt = $pdo->prepare($stmt);
-$stmt->bindParam(':id', $id);
-$stmt->execute();
-$game = $stmt->fetch(PDO::FETCH_ASSOC);
-
+$game = $query->setSelectQuery('SELECT * FROM trending WHERE id = ?', [$id]);
 // Проверяем, существует ли игра
 if (!$game) {
     echo "Игра не найдена.";
@@ -69,6 +64,13 @@ if (!$game) {
     }
 
     ?>
+    <div class="card">
+        <div class="card-body">
+            <img src="../<?= $game[0]->image ?>" alt="" width="250" height="250">
+            <h5 class="card-title"><?= $game[0]->followers ?></h5>
+            <p class="card-text"><?= $game[0]->content ?></p>
+        </div>
+    </div>
     <form action="show.php" method="post">
         <label>Оставь отзыв об этой игре:</label><br>
         <input type="text" name="trending_id" value="<?php echo htmlspecialchars($trending_id); ?>">
@@ -85,4 +87,4 @@ if (!$game) {
 
 </html>
 
-<?php require_once "blocks/footer.php" ?>
+<?php require_once "include/footer.php" ?>
