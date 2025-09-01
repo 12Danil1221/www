@@ -2,6 +2,7 @@
 
 //Подключение к бд
 require_once "./db.php";
+$query = new db();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 $login = htmlspecialchars(trim($_POST['login']));
@@ -19,13 +20,11 @@ if(strlen($password) < 2){
 
 
 //Авторизация
-$sql = 'SELECT id FROM users WHERE login = ? AND password = ?';
-$query = $pdo->prepare($sql);
-$query->execute([$login, $password]);
-$user = $query->fetch(PDO::FETCH_ASSOC);
+$user = $query->setSelectQuery('SELECT id FROM users WHERE login = ? AND password = ?', [$login, $password]);
 
 if($user){
     $_SESSION['user_id'] = $user['id']; //Сохрвняем id пользователя в сессии
+    
     setcookie('login', $login, time()+ 3600 * 24 * 30, "/");
     header('Location: ../user.php');
 }else{
