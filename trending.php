@@ -30,43 +30,41 @@
                     $image = htmlspecialchars($el->image, ENT_QUOTES, 'UTF-8');
                     $followers = htmlspecialchars($el->followers, ENT_QUOTES, 'UTF-8');
                     $content = htmlspecialchars($el->content, ENT_QUOTES, 'UTF-8');
-                        echo '
-                        <div class="block">
-                            <img class="game-image" src="'.$image.'" alt="" width="250" height="250">
-                            <span><img src="./img/fire.svg" alt=""> '.$followers.' Followers</span>
-                            <span>'.$content.'</span>
+                        ?>
+                <div class="block">
+                    <img class="game-image" src="<?= $image ?>" alt="" width="250" height="250">
+                    <span><img src="./img/fire.svg" alt=""> <?= $followers ?> Followers</span>
+                    <span><?=$content?></span>
 
-                            <div class="detail-content-block">
-                            <a class="detail-content--text" href="./show.php/'.$el->id.'">Подробнее</a>
-                            </div>
-                            
-                            <div class="block-trending-forms">
-                            <form action="./func/redact.php" method="POST">
-                            <input type="hidden" name="id" value="'.$el->id.'">
-                            <input type="hidden" name="followers" value="'.$el->followers.'">
-                            <input type="hidden" name="content" value="'.$el->content.'">
-                            
-                            '?>
-                <?php 
+                    <div class="detail-content-block">
+                        <a class="detail-content--text" href="./show.php/<?=$el->id?>">Подробнее</a>
+                    </div>
+
+                    <div class="block-trending-forms">
+                        <form action="./func/redact.php" method="POST">
+                            <input type="hidden" name="id" value="<?=$el->id?>">
+                            <input type="hidden" name="followers" value="<?=$el->followers?>">
+                            <input type="hidden" name="content" value="<?=$el->content?>">
+                            <?php 
                             $user_login = $_COOKIE['login'];
 
-                            $result = $query->setSelectQuery('SELECT role FROM users WHERE login = ?', [$login]);
+                            $result = $query->setSelectQuery('SELECT role FROM users WHERE login = ?', [$user_login]);
 
                             if(isset($_COOKIE['login']) && $result[0]->role == 'admin'):
                             ?>
-                <button class="redact-to-cart" type="submit">Редактировать</button>
-                <?php
+                            <button class="redact-to-cart" type="submit">Редактировать</button>
+                            <?php
                             endif;
-                            ?>
-                <?php '</form>
+                ?>
+                        </form>
 
-                            <form action="./func/add-cart.php" method="POST">
-                            <input type="hidden" class="one-line" name="image" value="'.$el->image.'">
-                            <input type="hidden" class="one-line" name="followers" value="'.$el->followers.'">
-                            <input type="hidden" class="one-line" name="content" value="'.$el->content.'">
-                            
+                        <form action="./func/add-cart.php" method="POST">
+                            <input type="hidden" class="one-line" name="image" value="<?=$el->image?>">
+                            <input type="hidden" class="one-line" name="followers" value="<?=$el->followers?>">
+                            <input type="hidden" class="one-line" name="content" value="<?=$el->content?>">
+                            <br>
                             <button class="add-to-cart" type="submit">Добавить в корзину</button>
-                        ';
+                            <?php
                         if($_SERVER['REQUEST_METHOD']=='POST'){
                             $id = $_POST['id'];
                             $followers = $_POST['followers'];
@@ -84,19 +82,19 @@
                     echo "Нет доступных данных об товарах";
                 }
                 ?>
-            </div>
-        </div>
+                    </div>
+                </div>
 
-        <?php require_once "include/footer.php" ?>
+                <?php require_once "include/footer.php" ?>
 
-        <script>
-        function checkEmail() {
-            let email = document.querySelector('#emailField').value;
-            if (!email.includes('@')) alert('Нет символа @');
-            else if (!email.includes('.')) alert('Нет символа .');
-            else alert('Все отлично!');
-        }
-        </script>
+                <script>
+                function checkEmail() {
+                    let email = document.querySelector('#emailField').value;
+                    if (!email.includes('@')) alert('Нет символа @');
+                    else if (!email.includes('.')) alert('Нет символа .');
+                    else alert('Все отлично!');
+                }
+                </script>
 </body>
 
 </html>
