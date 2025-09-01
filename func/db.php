@@ -16,7 +16,7 @@ class db implements queryInterface
         return $pdo;
     }
 
-        public function setSelectQuery($sql, $params)
+        public final function setSelectQuery($sql, $params) //final запрещает переопределение
     {
         # Query Select
         $query = $this->__construct()->prepare($sql);
@@ -25,9 +25,18 @@ class db implements queryInterface
         
         return $games;
     }
-        public function setInsertQuery($sql, $params)
+        public final function setInsertQuery($sql, $params)
     {
-        
+       
+        # Query Insert
+        $query = $this->__construct()->prepare($sql);
+        $query->execute($params);
+
+    }
+    
+        public final function setUpdateQuery($sql, $params)
+    {
+       
         # Query Insert
         $query = $this->__construct()->prepare($sql);
         $query->execute($params);
@@ -35,5 +44,7 @@ class db implements queryInterface
     }
 
 }
+
+
 
 ?>
