@@ -67,10 +67,10 @@
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 <br>
                 <?php
-                $user_login = $_COOKIE['login'];
+                @$login = $_COOKIE['login'];
 
-                $result = $query->setSelectQuery('SELECT role FROM users WHERE login = ?',[$user_login]);
-                if(isset($_COOKIE['login']) && $result[0]->role == 'admin'):
+                 $result = $query->setSelectQuery('SELECT role FROM users WHERE login = ?',[$login]);
+                if(@$_COOKIE['login'] && $result[0]->role == 'admin'):
                     ?>
                 <a href="./add-game.php" style="color:white">Добавить товар</a>
                 <?php
