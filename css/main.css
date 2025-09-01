@@ -597,6 +597,8 @@ footer>p {
 }
 
 .add-to-cart {
+    position     : relative;
+    margin       : 20px 0;
     padding      : 10px 20px;
     color        : white;
     background   : #FA9021;
@@ -604,6 +606,11 @@ footer>p {
     border-radius: 10px;
 
     cursor: pointer;
+}
+
+.block-delete-cart {
+    display        : flex;
+    justify-content: center;
 }
 
 .add-to-cart:hover {
