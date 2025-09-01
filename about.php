@@ -10,7 +10,7 @@
 
 <body>
     <div class="wrapper">
-        <?php require_once "include/header.php" ?>
+        <?php require_once "blocks/header.php" ?>
 
         <div class="hero-about container">
             <div class="info">
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <?php require_once "include/footer.php" ?>
+    <?php require_once "blocks/footer.php" ?>
 </body>
 
 </html>
