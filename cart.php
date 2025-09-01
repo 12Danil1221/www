@@ -26,26 +26,24 @@
                     <?php
                 //DB
                 require_once "./func/db.php";
-
+                $query = new db();
                 //SQL
-                $sql = 'SELECT * FROM cart ORDER BY id DESC';
-                $query = $pdo->prepare($sql);
-                $query->execute();
-                $games = $query->fetchAll(PDO::FETCH_OBJ);
+                $games = $query->setSelectQuery('SELECT * FROM cart ORDER BY id DESC', null);
                 foreach($games as $el)
 
                 echo '
                 <form method="post" action="./func/delete-cart.php">
                 <div class="block">
-                <img src="img/'.$el->image.'" alt="">
+                <img src="'.$el->image.'" alt="">
                 <span><img src="./img/fire.svg" alt=""> '.$el->followers.' Followers</span>
                 <span>'.$el->content.'</span>
                 <input type="hidden" name="image" value="'.$el->image.'"/>
                 <input type="hidden" name="followers" value="'.$el->followers.'"/>
                 <input type="hidden" name="content" value="'.$el->content.'"/>
                 <input style="margin-top:50px" type="text" name="quantity" value="'.$el->quantity.'" />
-                <button style="padding:2%; margin-right:40px" type="submit">Удалить товар из корзины</button>
-                
+                <div class="block-delete-cart">
+                    <button style="padding:5%;" type="submit">Удалить товар из корзины</button>
+                </div>
                 </div><br>
                 </form>';
                 
