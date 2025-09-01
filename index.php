@@ -25,7 +25,13 @@
         </div>
 
         <section class="container trending">
+            <?php 
+            if(isset($_COOKIE['login'])){
+                ?>
             <a href="./trending.php" class="see-all">SEE ALL</a>
+            <?php
+            }
+            ?>
             <h3>Currently Trending Games</h3>
 
             <div class="games">
@@ -59,7 +65,17 @@
 
         <section class="container big-text">
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                <br><a href="./add-game.php" style="color:white">Добавить товар</a>
+                <br>
+                <?php
+                $user_login = $_COOKIE['login'];
+
+                $result = $query->setSelectQuery('SELECT role FROM users WHERE login = ?',[$user_login]);
+                if(isset($_COOKIE['login']) && $result[0]->role == 'admin'):
+                    ?>
+                <a href="./add-game.php" style="color:white">Добавить товар</a>
+                <?php
+                endif;
+                 ?>
             </p>
         </section>
 
@@ -67,7 +83,7 @@
             <h3>Lorem Ipsum</h3>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                 industry's standard dummy text ever since the 1500s,</p>
-            <img src="img/banner.png" alt="Banner">
+            <img src="img/banner.jpeg" alt="Banner" style="border-radius: 50px;">
         </section>
     </div>
 
@@ -125,7 +141,13 @@
                 <img src="img/Project5.png" alt="">
                 <img src="img/Project6.png" alt="">
             </div>
+            <?php 
+            if(isset($_COOKIE['login'])){
+            ?>
             <a href="" class="see-all">SEE ALL</a>
+            <?php
+            }
+            ?>
         </div>
 
         <div class="container email">
