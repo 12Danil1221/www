@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <?php require_once "blocks/header.php" ?>
+    <?php require_once "include/header.php" ?>
 
     <div class="container hero-contacts">
         <h1>Lorem Ipsum is simply dummy text of the printing and.</h1>
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <?php require_once "blocks/footer.php" ?>
+    <?php require_once "include/footer.php" ?>
 </body>
 
 </html>
