@@ -7,7 +7,7 @@ $quantity = trim(htmlspecialchars($_POST['quantity'], FILTER_SANITIZE_SPECIAL_CH
     }
 
 //DB
-$pdo = new PDO('mysql:host=localhost;dbname=php-website;port=3306','root','');
+$pdo = new PDO('mysql:host=localhost;dbname=www;port=3306','root','');
 
 //SQL
 $sql = 'DELETE FROM cart WHERE image = ? AND followers = ? AND content = ? AND quantity = ?';
