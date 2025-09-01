@@ -10,7 +10,7 @@
 
 <body>
     <div class="wrapper">
-        <?php require_once "include/header.php" ?>
+        <?php require_once "include/header.php"; ?>
 
         <div class="container trending">
             <h3>Currently Trending Games</h3>
@@ -36,15 +36,29 @@
                             <span><img src="./img/fire.svg" alt=""> '.$followers.' Followers</span>
                             <span>'.$content.'</span>
 
-                            <a href="./show.php/'.$el->id.'">Подробнее</a>
+                            <div class="detail-content-block">
+                            <a class="detail-content--text" href="./show.php/'.$el->id.'">Подробнее</a>
+                            </div>
                             
+                            <div class="block-trending-forms">
                             <form action="./func/redact.php" method="POST">
                             <input type="hidden" name="id" value="'.$el->id.'">
                             <input type="hidden" name="followers" value="'.$el->followers.'">
                             <input type="hidden" name="content" value="'.$el->content.'">
                             
-                            <button class="redact" type="submit">Редактировать</button>
-                            </form>
+                            '?>
+                <?php 
+                            $user_login = $_COOKIE['login'];
+
+                            $result = $query->setSelectQuery('SELECT role FROM users WHERE login = ?', [$login]);
+
+                            if(isset($_COOKIE['login']) && $result[0]->role == 'admin'):
+                            ?>
+                <button class="redact-to-cart" type="submit">Редактировать</button>
+                <?php
+                            endif;
+                            ?>
+                <?php '</form>
 
                             <form action="./func/add-cart.php" method="POST">
                             <input type="hidden" class="one-line" name="image" value="'.$el->image.'">
@@ -58,13 +72,12 @@
                             $followers = $_POST['followers'];
                             $content = $_POST['content'];
 
-                            $sql = 'UPDATE trending SET followers = :followers, content = :content WHERE id = :id';
-                            $query = $pdo->prepare($sql);
-                            $query->execute([':id' => $id, ':followers' => $followers, ':content' => $content]);
+                            $query->setUpdateQuery('UPDATE trending SET followers = :followers, content = :content WHERE id = :id', [':id' => $id, ':followers' => $followers, ':content' => $content]);
                         }
 
                         echo '
                             </form>
+                            </div>
                         </div>';
                     }
                 }else{
