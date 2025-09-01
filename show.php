@@ -51,38 +51,56 @@ if (!$game) {
 <body>
     <?php  
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $trending_id = trim($_POST['id']);
-    $otziv = htmlspecialchars(trim($_POST['otziv']));
+    $trending_id = trim($_POST['trending_id']);
+    $otziv = htmlspecialchars(trim($_POST['otziv']));    
+
+        $result = $query->setInsertQuery('INSERT IGNORE INTO game_otzivs(trending_id, otziv) VALUE(?,?)',[$trending_id, $otziv]);
+        $result = $query->setSelectQuery('SELECT * FROM game_otzivs', null);
     
-
-    $stmt = $pdo->prepare('INSERT INTO game_otzivs(trending_id, otziv) VALUE(?,?)');
-    if($stmt->execute([$trending_id, $otziv])){
-        echo "Отзыв успешно добавлен";
-    }else{
-        echo "Отзыв не добавлен";
     }
-    }
-
     ?>
     <div class="card">
         <div class="card-body">
             <img src="../<?= $game[0]->image ?>" alt="" width="250" height="250">
-            <h5 class="card-title"><?= $game[0]->followers ?></h5>
-            <p class="card-text"><?= $game[0]->content ?></p>
+            <h5 class="card-title">Количество подписчиков: <?= $game[0]->followers ?></h5>
+            <p class="card-text">Описание: <?= $game[0]->content ?></p>
         </div>
     </div>
-    <form action="show.php" method="post">
-        <label>Оставь отзыв об этой игре:</label><br>
-        <input type="text" name="trending_id" value="<?php echo htmlspecialchars($trending_id); ?>">
-        <input type="text" name="otziv">
-        <br>
-        <button type="submit">Оставить отзыв</button>
+    <form class="feedback-block-content" action="#" method="post">
+        <label>
+            <h1 class="feedback--title">Оставь отзыв об этой игре:</h1>
+        </label><br>
+
+        <label for="trending_id">Название товара:</label>
+        <select name="trending_id" id="trending_id">
+            <option value="<?= $game[0]->id ?>"><?= $game[0]->id ?></option>
+        </select>
+
+        <label for="otziv">Оставить отзыв:</label>
+        <textarea name="otziv" id="otziv" rows="5"></textarea>
+
+        <button type="submit">Отправить отзыв</button>
     </form>
 
     <hr>
 
-    <h2 class="otzivs">Все отзывы об этом товаре:</h2>
+    <div class="feedback-all-block-content">
+        <h1 class="feedback--title--otzivs">Все отзывы об этом товаре:</h1>
+        <?php
+        $tovar_id = $game[0]->id;
+        $result = $query->setSelectQuery('SELECT * FROM game_otzivs WHERE trending_id = ?',[$tovar_id]);
+        if(isset($result[0])){
+        ?>
+        <h2><?=$result[0]->otziv?></h2>
+        <?php
+        }else{
+            ?>
+        <h2>Отзывов пока нету</h2>
+        <?php
+        }
+        ?>
 
+    </div>
 </body>
 
 </html>
