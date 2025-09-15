@@ -1,0 +1,1 @@
+{"version":2,"defects":{"MyClassTest::testClassConstructor":8,"MyClassTest::test_tallName":7,"MyClassTest::testTallName":8,"MyClassTest::test_tellName":7,"MyClassTest::testtellName":7},"times":{"MyClassTest::testClassConstructor":0.016,"MyClassTest::test_tallName":0.01,"MyClassTest::testTallName":0.009,"MyClassTest::test_tellName":0.005,"MyClassTest::testtellName":0.015}}

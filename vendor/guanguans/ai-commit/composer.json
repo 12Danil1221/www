@@ -1,0 +1,234 @@
+{
+    "name": "guanguans/ai-commit",
+    "description": "Automagically generate conventional git commit message with AI. - 使用 AI 自动生成约定式 git 提交信息。",
+    "license": "MIT",
+    "type": "project",
+    "abandoned": false,
+    "non-feature-branches": [],
+    "keywords": [
+        "ai",
+        "changelog",
+        "chat",
+        "chatgpt",
+        "commit",
+        "commit-message",
+        "commitizen",
+        "commitlint",
+        "conventional",
+        "conventional-commit",
+        "diff",
+        "git",
+        "git-diff",
+        "gpt",
+        "keepachangelog",
+        "bito",
+        "cli",
+        "copilot",
+        "github",
+        "gh-models",
+        "gh",
+        "models",
+        "model",
+        "ernie",
+        "bot",
+        "文心一言",
+        "kimi",
+        "moonshot",
+        "openai"
+    ],
+    "readme": "README.md",
+    "authors": [
+        {
+            "name": "guanguans",
+            "email": "ityaozm@gmail.com",
+            "homepage": "https://www.guanguans.cn",
+            "role": "developer"
+        }
+    ],
+    "homepage": "https://github.com/guanguans/ai-commit",
+    "support": {
+        "issues": "https://github.com/guanguans/ai-commit/issues",
+        "source": "https://github.com/guanguans/ai-commit"
+    },
+    "funding": [
+        {
+            "type": "wechat",
+            "url": "https://www.guanguans.cn/images/wechat.jpeg"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8",
+        "brainmaestro/composer-git-hooks": "^2.8 || ^3.0",
+        "guzzlehttp/guzzle": "^7.9",
+        "illuminate/http": "^8.83 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
+        "illuminate/translation": "^8.83 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
+        "illuminate/validation": "^8.83 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
+        "laminas/laminas-text": "^2.9",
+        "laravel-zero/framework": "^8.10 || ^9.0 || ^10.0 || ^11.0",
+        "laravel-zero/phar-updater": "^1.1",
+        "mockery/mockery": "^1.6",
+        "pestphp/pest": "^1.23 || ^2.0 || ^3.0",
+        "php-mock/php-mock-phpunit": "^2.13"
+    },
+    "repositories": [],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [],
+        "files": [
+            "app/Support/helpers.php"
+        ],
+        "exclude-from-classmap": [
+            "benchmarks"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "bin": [
+        "builds/ai-commit"
+    ],
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true,
+            "pestphp/pest-plugin": true
+        },
+        "apcu-autoloader": true,
+        "classmap-authoritative": false,
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": true,
+            "target-directory": "vendor-bin"
+        },
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        },
+        "hooks": {
+            "post-merge": [
+                "composer checks"
+            ],
+            "pre-commit": [
+                "composer checks"
+            ]
+        },
+        "phpstan": {
+            "includes": []
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@cghooks add --ignore-lock",
+            "@cghooks update",
+            "@composer-bin-all-update"
+        ],
+        "post-update-cmd": [
+            "@cghooks update",
+            "@composer-bin-all-update"
+        ],
+        "post-autoload-dump": [],
+        "ai-commit": "@php ./ai-commit commit --ansi",
+        "ai-commit-bito": "@ai-commit --generator=bito_cli",
+        "ai-commit-bito-no-verify": "@ai-commit-bito --no-verify",
+        "ai-commit-github-copilot": "@ai-commit --generator=github_copilot_cli",
+        "ai-commit-github-copilot-no-verify": "@ai-commit-github-copilot --no-verify",
+        "ai-commit-github-models": "@ai-commit --generator=github_models_cli",
+        "ai-commit-github-models-no-verify": "@ai-commit-github-models --no-verify",
+        "ai-commit-no-verify": "@ai-commit --no-verify",
+        "cghooks": "@php ./vendor/bin/cghooks --ansi -v",
+        "cghooks-install": [
+            "@cghooks add --ignore-lock",
+            "@cghooks update"
+        ],
+        "cghooks-uninstall": [
+            "@php -r \"file_exists('.git/hooks/pre-commit') and rename('.git/hooks/pre-commit', '.git/hooks/pre-commit.sample');\"",
+            "@php -r \"file_exists('.git/hooks/post-merge') and rename('.git/hooks/post-merge', '.git/hooks/post-merge.sample');\""
+        ],
+        "checks": [
+            "@composer-validate",
+            "@composer-unused",
+            "@md-lint",
+            "@readme-lint",
+            "@lint",
+            "@style-lint",
+            "@test",
+            "@psalm",
+            "@rector-dry-run"
+        ],
+        "composer-bin-all-update": "@composer bin all update --ansi -v",
+        "composer-check-platform-reqs": "@composer check-platform-reqs --lock --ansi -v",
+        "composer-unused": "@php ./vendor/bin/composer-unused --ansi -v",
+        "composer-updater": "@php ./composer-updater --highest-php-binary=/opt/homebrew/opt/php@8.3/bin/php --except-packages=pestphp/pest-plugin-laravel --ansi",
+        "composer-updater-bin": [
+            "@composer-updater --composer-json-path=vendor-bin/composer-unused/composer.json",
+            "@composer-updater --composer-json-path=vendor-bin/monorepo-builder-worker/composer.json",
+            "@composer-updater --composer-json-path=vendor-bin/php-cs-fixer/composer.json",
+            "@composer-updater --composer-json-path=vendor-bin/phpstan/composer.json",
+            "@composer-updater --composer-json-path=vendor-bin/psalm/composer.json",
+            "@composer-updater --composer-json-path=vendor-bin/rector/composer.json"
+        ],
+        "composer-updater-bin-dry-run": [
+            "@composer-updater-dry-run --composer-json-path=vendor-bin/composer-unused/composer.json",
+            "@composer-updater-dry-run --composer-json-path=vendor-bin/monorepo-builder-worker/composer.json",
+            "@composer-updater-dry-run --composer-json-path=vendor-bin/php-cs-fixer/composer.json",
+            "@composer-updater-dry-run --composer-json-path=vendor-bin/phpstan/composer.json",
+            "@composer-updater-dry-run --composer-json-path=vendor-bin/psalm/composer.json",
+            "@composer-updater-dry-run --composer-json-path=vendor-bin/rector/composer.json"
+        ],
+        "composer-updater-dry-run": "@composer-updater --dry-run",
+        "composer-validate": "@composer validate --strict --ansi -v",
+        "haulable": "haulable --ansi -v",
+        "haulable-package": "@haulable package ./builds/ai-commit",
+        "lint": [
+            "for DIR in .; do find $DIR -maxdepth 1 -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done",
+            "for DIR in ./app ./bootstrap ./config ./tests; do find $DIR -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done"
+        ],
+        "mark-finish": "printf '\\n!\\n!\\t\\033[0;32m%s\\033[0m\\n!\\n\\n' \"Finished\"",
+        "mark-separate": "printf '\\n!\\n!\\t\\033[0;33m%s\\033[0m\\n!\\n\\n' \"----------------\"",
+        "mark-start": "printf '\\n!\\n!\\t\\033[0;36m%s\\033[0m\\n!\\n\\n' \"Started\"",
+        "md-fix": "@md-lint --fix",
+        "md-lint": "lint-md --config .lintmdrc ./*.md ./.github/ ./resources/docs/",
+        "pest": "@php ./vendor/bin/pest --coverage",
+        "pest-coverage": "@pest --coverage-html=./build/phpunit/ --coverage-clover=clover.xml",
+        "pest-migrate-configuration": "@pest --migrate-configuration",
+        "phpstan": "@php ./vendor/bin/phpstan analyse --ansi -v",
+        "phpstan-baseline": "@phpstan --generate-baseline --allow-empty-baseline",
+        "post-merge": [
+            "@composer install"
+        ],
+        "psalm": "@php ./vendor/bin/psalm",
+        "psalm-baseline": "@psalm --update-baseline",
+        "readme-lint": "@php ./readme-lint --ansi -v",
+        "rector": "@php ./vendor/bin/rector --ansi -v",
+        "rector-dry-run": "@rector --dry-run",
+        "release": "@php ./vendor/bin/monorepo-builder release --ansi -vvv",
+        "release-major": "@release major",
+        "release-major-dry-run": "@release-major --dry-run",
+        "release-minor": "@release minor",
+        "release-minor-dry-run": "@release-minor --dry-run",
+        "release-patch": "@release patch",
+        "release-patch-dry-run": "@release-patch --dry-run",
+        "style-fix": "@php ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --show-progress=dots --ansi -v",
+        "style-lint": "@style-fix --diff --dry-run",
+        "test": "@pest",
+        "test-coverage": "@pest-coverage",
+        "test-migrate-configuration": "@pest-migrate-configuration",
+        "trufflehog": "trufflehog git https://github.com/guanguans/ai-commit --only-verified",
+        "var-dump-server": "@php ./vendor/bin/var-dump-server --ansi -v",
+        "vhs": "vhs < ai-commit.tape"
+    }
+}
