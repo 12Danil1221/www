@@ -1,39 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Website</title>
-    <link rel="stylesheet" href="../www/css/main.css">
-</head>
-
 <body>
     <?php require_once "include/header.php" ?>
 
     <div class="container hero-contacts">
-        <h1>Lorem Ipsum is simply dummy text of the printing and.</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        <h1>Как с нами связаться:</h1>
+        <p> удобные способы общения для ваших вопросов и заказов.</p>
         <img src="img/Map.png" alt="Map">
     </div>
 
     <div class="feedback">
         <div class="container">
-            <h2>Say hello</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing .</p>
+            <h2>Форма обратной связи</h2>
+            <p>Заполните форму для обратной связи.</p>
 
-            <form>
+            <form class="form-feedback">
                 <div class="inline">
                     <div>
-                        <label>First Name</label>
+                        <label>Имя</label>
                         <input type="text">
                     </div>
                     <div>
-                        <label>Last Name</label>
+                        <label>Логин</label>
                         <input type="text">
                     </div>
                 </div>
-                <label>Email Address</label>
+                <label>Емаил</label>
                 <input type="email" class="one-line">
 
                 <label>Message</label>
