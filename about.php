@@ -1,47 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Website</title>
-    <link rel="stylesheet" href="../www/css/main.css">
-</head>
-
 <body>
     <div class="wrapper">
         <?php require_once "include/header.php" ?>
 
         <div class="hero-about container">
             <div class="info">
-                <h1>Lorem Ipsum is simply dummy text of the printing and.</h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s.</p>
-                <button class="btn">Get in touch</button>
+                <h1>Добро пожаловать в мир стильной и комфортной мебели!</h1>
+                <p>Мы — команда профессионалов, которая стремится создать для вас уютную и гармоничную атмосферу в доме.
+                    Наша цель — предложить вам качественную мебель по доступным ценам.</p>
+                <a href="./contacts.php"><button class="btn">Свяжитесь с нами</button></a>
             </div>
-            <img src="img/about-banner.png" alt="">
+            <img src="img/about-banner.jpeg" alt="" width="750" height="700">
         </div>
 
         <div class="container work">
-            <h2>Why work with us</h2>
+            <h2>Почему стоит покупать у нас:</h2>
             <div class="blocks">
-                <div class="block">
-                    <span class="badge purple">Lorem ipsum</span>
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s,</p>
+                <div class="block d-grid ">
+                    <span class="badge purple">Высокое качество и <br> долговечность продукции. </span>
+                    <h3>Мебель изготовлена из качественных и прочных материалов, которые обеспечивают долгий срок
+                        службы.</h3>
+                    <p>Использование надёжных комплектующих и строгий контроль качества на всех этапах производства.
+                    </p>
                 </div>
-                <div class="block">
-                    <span class="badge brown">Lorem ipsum</span>
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s,</p>
+                <div class="block d-grid ">
+                    <span class="badge brown">Уникальный дизайн и <br> разнообразие моделей. </span>
+                    <h3>В нашем ассортименте представлены уникальные и стильные модели, которые удовлетворят любые вкусы
+                        и потребности. </h3>
+                    <p>Наличие авторских коллекций и возможность создания мебели по индивидуальным заказам.</p>
                 </div>
-                <div class="block">
-                    <span class="badge green">Lorem ipsum</span>
-                    <h3>Lorem Ipsum</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s,</p>
+                <div class="block d-grid ">
+                    <span class="badge green">Гарантия и сервис.</span>
+                    <h3>Гарантии на продукцию и условия сервисного обслуживания.</h3>
+                    <p>Включает послегарантийное обслуживание, быструю доставку запасных частей и помощь в решении любых
+                        вопросов, связанных с использованием мебели.</p>
                 </div>
             </div>
         </div>
