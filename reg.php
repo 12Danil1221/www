@@ -29,10 +29,10 @@
                     </div>
                 </div>
                 <label for="email">Email</label>
-                <input type="email" id="email" class="one-line" name="email" required>
+                <input class="one-line" type="email" id="email" name="email" required>
 
                 <label for="password">Пароль</label>
-                <input type="password" id="password" class="one-line" name="password" required>
+                <input class="one-line" type="password" id="password" name="password" required>
 
                 <button type="submit">Зарегистрироваться</button>
             </form>
