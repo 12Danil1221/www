@@ -13,7 +13,7 @@
         <?php require_once "include/header.php"; ?>
 
         <div class="container trending">
-            <h3>Currently Trending Games</h3>
+            <h3>Текущие популярные товары</h3>
 
 
             <div class="games">
@@ -31,7 +31,7 @@
                     $followers = htmlspecialchars($el->followers, ENT_QUOTES, 'UTF-8');
                     $content = htmlspecialchars($el->content, ENT_QUOTES, 'UTF-8');
                         ?>
-                <div class="block">
+                <div class="block d-grid w-auto">
                     <img class="game-image" src="<?= $image ?>" alt="" width="250" height="250">
                     <span><img src="./img/fire.svg" alt=""> <?= $followers ?> Followers</span>
                     <span><?=$content?></span>
