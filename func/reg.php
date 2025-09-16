@@ -11,6 +11,7 @@
         $username = htmlspecialchars(trim($_POST['username']));
         $email = htmlspecialchars(trim($_POST['email']));
         $password = htmlspecialchars(trim($_POST['password']));
+
     }
 
     if(strlen($login) < 3){
@@ -22,7 +23,7 @@
             exit;
             }
             if(strlen($email) < 3 && !str_contains($email, '@')){
-                echo "Емаил слишком короткий";
+                echo "Емаил слишком короткий или нет символа @";
                 exit;
                 }
                 if(strlen($password) < 3){
@@ -30,19 +31,25 @@
                     exit;
                     }
     
-    $stmt = $pdo->prepare('SELECT * FROM users WHERE login = ? OR email = ?');
-    $stmt->execute([$login, $email]);
-    if($stmt->rowCount() > 0){
-        echo "Логин или Емаил уже заняты!";
-    }else{
-    //INSERT
-    $sql = 'INSERT INTO users(login, username, email, password) VALUES(?, ?, ?, ?)';
-    $query = $pdo->prepare($sql);
-    
-    if($query->execute([$login, $username, $email, $password])){
-        header('Location: ../index.php');
-    }else{
-        echo "Регистрация не прошла";
-    }
+    try{        
+        $query = new db();
+        
+        $result = $query->setSelectQuery('SELECT * FROM users WHERE login = ? OR email = ?', [$login, $email]);
 
+        if(!empty($result)){
+            echo "Логин или Емаил уже существуют!";
+        }else{
+        //INSERT
+            $hash_pass = password_hash($password, PASSWORD_DEFAULT);
+            $result = $query->setInsertQuery('INSERT INTO users(login, username, email, password) VALUES(?, ?, ?, ?)', [$login, $username, $email, $hash_pass]);
+            $result = $query->setSelectQuery('SELECT * FROM users WHERE(email = ?)',[$email]);
+
+            if(!empty($result)){
+                header('Location: ../index.php');
+            }else{
+                echo "Регистрация не прошла";
+            }
+        }
+    }catch(PDOException $e){
+        echo "Ошибка:".$e->getMessage();
     }
