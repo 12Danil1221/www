@@ -20,7 +20,7 @@ if(strlen($password) < 2){
 
 
 //Авторизация
-$user = $query->setSelectQuery('SELECT id FROM users WHERE login = ? AND password = ?', [$login, $password]);
+$user = $query->setSelectQuery('SELECT id FROM users WHERE login = ?', [$login]);
 
 if($user){
     $_SESSION['user_id'] = $user['id']; //Сохрвняем id пользователя в сессии
