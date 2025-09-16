@@ -1,24 +1,24 @@
 <footer>
     <div class="blocks container">
         <div>
-            <span class="logo">logo</span>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            <span class="logo">Комфорт Хаус — </span>
+            <p> ваш надёжный партнёр в мире мебели! </p>
         </div>
-        <div>
-            <h4>About us</h4>
+        <div class="block-abouts">
+            <h4>О нас</h4>
             <ul>
-                <li>Zeux</li>
-                <li>Portfolio</li>
-                <li>Careers</li>
-                <li>Contact us</li>
+                <li>О компании</li>
+                <li>Портфолио</li>
+                <li>Карьера</li>
+                <li>Контакты</li>
             </ul>
         </div>
-        <div>
-            <h4>Contact us</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+        <div class="block-contacts">
+            <h4>Контакты</h4>
+            <p>Отдел по продаже мебели: </p>
             <p>+908 89097 890</p>
         </div>
     </div>
     <hr>
-    <p>Copyright ® 2021 Lorem All rights Rcerved</p>
+    <p>Комфорт Хаус ® 2021 Все права защищены.</p>
 </footer>
