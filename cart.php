@@ -1,18 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кабинет пользователя</title>
-    <link rel="stylesheet" href="../www/css/main.css">
-    <style>
-    .feedback form {
-        width: 250px;
-    }
-    </style>
-</head>
-
 <body>
     <?php require_once "include/header.php" ?>
 
@@ -33,7 +18,7 @@
 
                 echo '
                 <form method="post" action="./func/delete-cart.php">
-                <div class="block">
+                <div class="block d-grid w-auto">
                 <img src="'.$el->image.'" alt="">
                 <span><img src="./img/fire.svg" alt=""> '.$el->followers.' Followers</span>
                 <span>'.$el->content.'</span>
@@ -42,18 +27,18 @@
                 <input type="hidden" name="content" value="'.$el->content.'"/>
                 <input style="margin-top:50px" type="text" name="quantity" value="'.$el->quantity.'" />
                 <div class="block-delete-cart">
-                    <button style="padding:5%;" type="submit">Удалить товар из корзины</button>
+                    <button type="submit">Удалить товар из корзины</button>
                 </div>
                 </div><br>
                 </form>';
                 
                 ?>
                 </div>
-                <div class="container" style="width:1400px; text-align: center; font-weight: 400; font-size:20px;">
-                    <button style="background-color:none; padding:0.5%;" type="submit">Оформление заказа</button>
+                <div class="container w-auto" style="text-align: center; font-weight: 400; font-size:20px;">
+                    <button class="p-2 btn btn-primary text-white" type="submit">Оформление заказа</button>
                     <br>
                     <br>
-                    <a style="color:white;di-text:center;" href="./trending.php">Вернутся в галлерею товаров</a>
+                    <a style="color:white;di-text:center;" href="./trending.php">Вернутся к товарам</a>
                 </div>
 
             </div>
